@@ -1,77 +1,15 @@
-import getWishList from "../api/get-wish-list";
 
-type Want = {
-  id: number;
-  resource_url: string;
-  date_added: string;
-  basic_information: BasicInformation;
-  rating: number;
-};
 
-type BasicInformation = {
-  id: number;
-  master_id: number;
-  master_url: null;
-  resource_url: string;
-  title: string;
-  year: number;
-  formats: Array<Format>;
-  artists: Array<Aartist>;
-  labels: Array<Label>;
-  thumb: string;
-  cover_image: string;
-  genres: Array<string>;
-  styles: Array<string>;
-};
-
-type Format = {
-  name: string;
-  qty: string;
-  descriptions: Array<string>;
-};
-
-type Aartist = {
-  name: string;
-  anv: string;
-  join: string;
-  role: string;
-  tracks: string;
-  id: number;
-  resource_url: string;
-};
-
-type Label = {
-  name: string;
-  catno: string;
-  entity_type: string;
-  entity_type_name: String;
-  id: number;
-  resource_url: string;
-};
-
-export default async function Home() {
-  const { wants } = await getWishList();
-
+export default async function LandingPage() {
   return (
-    <>
-      <div>
-        <h1 className="text-white">Wants</h1>
-        {wants.length > 0 && (
-          <div>
-            {wants.map((want: any) => {
-              const { id, title } = want.basic_information;
-              return (
-                <div key={id}>
-                  <p>----------------------</p>
-                  <p>Id: {id}</p>
-                  <p>Title: {title}</p>
-                  {/* <a href={want.resource_url}>{want.resource_url}</a> */}
-                </div>
-              );
-            })}
-          </div>
-        )}
-      </div>
-    </>
+    <div className="text-center">
+      <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gray-900 dark:text-white tracking-tight">
+        Discogs <br className="hidden sm:block" />
+        <span className="text-purple-600 dark:text-purple-400">wishlist</span>
+      </h1>
+      <p className="mt-6 max-w-2xl mx-auto text-lg sm:text-xl text-gray-600 dark:text-gray-300">
+        A way to shop for records through your wantlist.
+      </p>
+    </div>
   );
 }
